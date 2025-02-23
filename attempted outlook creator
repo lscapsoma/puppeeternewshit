@@ -1,0 +1,54 @@
+import puppeteer from 'puppeteer-extra';
+import StealthPlugin from 'puppeteer-extra-plugin-stealth';
+
+// Use the stealth plugin to evade bot detection
+puppeteer.use(StealthPlugin());
+
+(async () => {
+  const browser = await puppeteer.launch({
+    headless: false,
+    defaultViewport: null, // Allows manual resizing
+    slowMo: 25,
+    
+
+  });
+  
+  const page = await browser.newPage();
+  page.goto('https://signup.live.com/')
+
+  await page.locator('#usernameInput').fill("jessicannguye3222n@outlook.com");
+
+  await page.waitForSelector('#nextButton');
+  await page.click('#nextButton')
+
+  await page.locator('#Password').fill('Herrialsmmmjk!');
+  await page.waitForSelector('#nextButton');
+  await page.click('#nextButton')
+
+  await page.locator('#firstNameInput').fill('Jessica')
+  await page.locator('#lastNameInput').fill('Nguyen')
+
+  await page.waitForSelector('#nextButton');
+  await page.click('#nextButton')
+
+  await page.waitForSelector('#BirthMonth');
+  await page.click('#BirthMonth')
+  await page.keyboard.type('m')
+  await page.keyboard.press('Enter')
+  
+  await page.waitForSelector('#BirthDay');
+  await page.click('#BirthDay')
+  await page.keyboard.type('11')
+  await page.keyboard.press('Enter')
+    
+  
+  await page.waitForSelector('#BirthYear');
+  await page.click('#BirthYear')
+  await page.keyboard.type('1980')
+  await page.keyboard.press('Enter')
+
+  await page.waitForSelector('#nextButton')
+  await page.click('#nextButton')
+
+
+})();
